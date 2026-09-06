@@ -6,7 +6,10 @@ const nextConfig = {
   output: 'export',
   images: { unoptimized: true },
   basePath: isGitHubPagesBuild ? `/${repositoryName}` : '',
-  assetPrefix: isGitHubPagesBuild ? `/${repositoryName}/` : ''
+  assetPrefix: isGitHubPagesBuild ? `/${repositoryName}/` : '',
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isGitHubPagesBuild ? `/${repositoryName}` : ''
+  }
 };
 
 module.exports = nextConfig;

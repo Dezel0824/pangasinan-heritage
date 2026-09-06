@@ -2,11 +2,12 @@ export const categories = ['All', 'Natural Wonders', 'Historical Sites', 'Cultur
 
 // Add the cover image plus two gallery images in public/images using this pattern:
 // `destination.jpg`, `destination-1.jpg`, and `destination-2.jpg`.
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 const localImage = (filename) => {
   const baseName = filename.replace(/\.[^.]+$/, '');
   return {
-    image: `/images/${filename}`,
-    gallery: [`/images/${baseName}-1.jpg`, `/images/${baseName}-2.jpg`]
+    image: `${basePath}/images/${filename}`,
+    gallery: [`${basePath}/images/${baseName}-1.jpg`, `${basePath}/images/${baseName}-2.jpg`]
   };
 };
 
