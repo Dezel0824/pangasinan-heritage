@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function CategoryCard({ title, description, href='/heritage' }) { return <Link href={href} className="focus-ring block rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-100 transition hover:-translate-y-0.5 hover:shadow-md"><h3 className="font-display text-xl font-bold text-ocean">{title}</h3><p className="mt-2 text-sm leading-6 text-slate-600">{description}</p></Link>; }

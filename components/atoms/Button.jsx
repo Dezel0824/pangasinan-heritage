@@ -1,0 +1,3 @@
+import Link from 'next/link';
+const styles = { primary: 'bg-ocean text-white hover:bg-[#083e59]', secondary: 'bg-gold text-ink hover:bg-[#c99330]', outline: 'border border-ocean text-ocean hover:bg-ocean hover:text-white', ghost: 'text-ocean hover:bg-sky/10' };
+export default function Button({ children, href, variant='primary', className='', ...props }) { const cls = `focus-ring inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-bold transition ${styles[variant]} ${className}`; return href ? <Link href={href} className={cls}>{children}</Link> : <button className={cls} {...props}>{children}</button>; }

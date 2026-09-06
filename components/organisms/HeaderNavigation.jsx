@@ -1,0 +1,12 @@
+'use client';
+import { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import Button from '../atoms/Button';
+const links=[['Home','/'],['Heritage Sites','/heritage'],['Destinations','/#explore'],['About','/about']];
+export default function HeaderNavigation(){ const [open,setOpen]=useState(false); const path=usePathname(); const active=(href)=> href.includes('#') ? false : (href==='/' ? path==='/' : path.startsWith(href)); return <header className="pointer-events-none fixed inset-x-0 top-4 z-50 mx-auto max-w-7xl px-4"><nav className="glass pointer-events-auto relative flex min-h-16 items-center justify-between rounded-full px-4 sm:px-5" aria-label="Main navigation"><Link href="/" className="focus-ring flex items-center gap-2 rounded-full font-display text-lg font-bold text-ocean"><img
+  src="/images/logo.png"
+  alt="Pangasinan Heritage logo"
+  className="h-9 w-9 rounded-full object-contain"
+/><span className="hidden sm:inline">Pangasinan Heritage</span></Link><div className="hidden items-center gap-1 lg:flex">{links.map(([label,href])=><Link key={label} href={href} className={`focus-ring rounded-full px-3 py-2 text-sm font-bold transition ${active(href)?'bg-ocean text-white':'text-slate-600 hover:bg-sky/10 hover:text-ocean'}`}>{label}</Link>)}<Link aria-label="Search heritage sites" href="/heritage" className="focus-ring rounded-full p-2 text-ocean hover:bg-sky/10"><MagnifyingGlassIcon className="h-5 w-5"/></Link></div><div className="hidden lg:block"><Button href="/heritage" className="px-4 py-2.5">Explore now</Button></div><button onClick={()=>setOpen(!open)} className="focus-ring rounded-full p-2 text-ocean lg:hidden" aria-expanded={open} aria-controls="mobile-menu" aria-label={open?'Close menu':'Open menu'}>{open?<XMarkIcon className="h-6 w-6"/>:<Bars3Icon className="h-6 w-6"/>}</button>{open&&<div id="mobile-menu" className="absolute left-0 right-0 top-[4.5rem] rounded-3xl bg-white p-3 shadow-float lg:hidden">{links.map(([label,href])=><Link onClick={()=>setOpen(false)} key={label} href={href} className={`focus-ring block rounded-2xl px-4 py-3 text-sm font-bold ${active(href)?'bg-ocean text-white':'text-slate-700 hover:bg-sky/10'}`}>{label}</Link>)}<Button href="/heritage" className="mt-2 w-full" onClick={()=>setOpen(false)}>Explore now</Button></div>}</nav></header>; }
